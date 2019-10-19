@@ -1,0 +1,115 @@
+//*****************
+//Program Name: Program 16
+//Author: Caitlin Long
+//IDE Used: Eclipse
+//Program description: 2d arrays
+//*****************
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+
+using namespace std;
+
+const int rows = 10, cols = 10, maxRand = 1000;
+
+void populateArray(int[][cols]);
+void addArray(int[][cols], int[][cols], int[][cols]);
+int findLargest(int[][cols]);
+int findSmallest(int[][cols]);
+void printArray(int[][cols]);
+
+int main() {
+
+	srand(time(0));
+
+	int numbers[rows][cols], numbers2[rows][cols], numbers3[rows][cols];
+
+	    populateArray(numbers);
+	    printArray(numbers);
+
+
+	    populateArray(numbers2);
+	    printArray(numbers2);
+
+	    addArray(numbers, numbers2, numbers3);
+
+	    printArray(numbers3);
+
+	    cout << "The largest value in Array 1 is: " << findLargest(numbers) << endl;
+	    cout << "The smallest value in Array 1 is: " << findSmallest(numbers) << endl;
+	    cout << "The largest value in Array 2 is: " << findLargest(numbers2) << endl;
+	    cout << "The largest value in Array 2 is: " << findSmallest(numbers2) << endl;
+	    cout << "The largest value in Array 3 is: " << findLargest(numbers3) << endl;
+	    cout << "The largest value in Array 3 is: " << findSmallest(numbers3) << endl;
+
+	return 0;
+}
+//*****************
+//Function name: populateArray
+//Purpose: puts numbers in the array
+//List of parameters: one 2d array
+//*****************
+void populateArray(int numbers[][cols])
+{
+	for (int r = 0; r < rows; r++)
+	        for (int c = 0; c < cols; c++)
+	          numbers[r][c] = rand() % maxRand + 1;
+
+}
+//*****************
+//Function name: addArray
+//Purpose: adds the 1st and 2nd array together to create a third array
+//List of parameters: three 2d variables
+//*****************
+void addArray(int arr[][cols], int arr2[][cols], int arr3[][cols])
+{
+	arr3[rows][cols] = arr[rows][cols] + arr2[rows][cols];
+
+}
+//*****************
+//Function name: findLargest
+//Purpose: find largest value in the array
+//List of parameters: one 2d array
+//Returns: int arr[][cols]
+//Return type: int array
+//*****************
+int findLargest(int arr[][cols])
+{
+	int largest = arr[0][0];
+	    for (int r = 0; r < rows; r++)
+	    	for (int c = 0; c < cols; c++)
+	        if (arr[r][c] > largest)
+	            largest = arr[r][c];
+	    return largest;
+}
+//*****************
+//Function name: findSmallest
+//Purpose: find smallest value in the array
+//List of parameters: one 2d array
+//Returns: int arr[][cols]
+//Return type: int array
+//*****************
+int findSmallest(int arr[][cols])
+{
+	int smallest = arr[0][0];
+		    for (int r = 0; r < rows; r++)
+		    	for (int c = 0; c < cols; c++)
+		        if (arr[r][c] > smallest)
+		            smallest = arr[r][c];
+		    return smallest;
+}
+//*****************
+//Function name: printArray
+//Purpose: prints array
+//List of parameters: one 2d array
+//*****************
+void printArray(int arr[][cols])
+{
+	for (int r = 0; r < rows; r++)
+	{
+		for (int c = 0; c< cols; c++)
+			cout << setw(8) << arr[r][c];
+		cout << endl;
+	}
+}
+
